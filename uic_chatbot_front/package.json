@@ -1,0 +1,22 @@
+{
+  "name": "uic-chat",
+  "version": "1.0.0",
+  "description": "UIC Chat",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bad-words": "^3.0.0",
+    "env-cmd": "^10.1.0",
+    "express": "^4.16.4",
+    "request": "^2.88.2",
+    "socket.io": "^2.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.7"
+  }
+}
