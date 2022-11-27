@@ -31,7 +31,7 @@ The jupyter notebook are store in the evaluation folder, which includes 8 models
 1. [TF-IDF](https://www.kaggle.com/code/shadowcattin/ealuation-tfidf-fyp)
 2. [BERT](https://www.kaggle.com/code/shadowcattin/ealuation-bert-emb-fyp)
 3. [RoBERTa](https://www.kaggle.com/code/shadowcattin/sentence-embedding-roberta-fyp)
-4. [SBER](https://www.kaggle.com/code/shadowcattin/ealuation-sbert-base-fyp)
+4. [SBERT](https://www.kaggle.com/code/shadowcattin/ealuation-sbert-base-fyp)
 5. [SRoBERTa](https://www.kaggle.com/code/shadowcattin/ealuation-sbert-ro-fit-fyp)
 6. [SDeBERTa](https://www.kaggle.com/code/shadowcattin/ealuation-sbert-deber-fyp)
 4. [SBERT after fine-tune](https://www.kaggle.com/code/shadowcattin/ealuation-sbert-finet-fyp)
