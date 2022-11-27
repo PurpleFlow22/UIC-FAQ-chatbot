@@ -1,9 +1,9 @@
 # UIC-chatbot
-A multi-language chatbot based on deep learning and natural language processing.
+A multi-language chatbot based on deep learning and natural language processing, the content is about the UIC admission question. The project is primarily based on a retrieval-based approach to question answering.
 
-## notice
-### back end algorithm
-The file back_end_alg needs the model obtain from [hugging face](https://huggingface.co/models) which consist of:
+## File Description
+### back_end_alg
+The file mainly cosist of the Back end algorithm, and it needs the model obtain from [hugging face](https://huggingface.co/models) which consist of:
 
 1. bert-base-chinese
 2. roberta-chinese-base
@@ -11,8 +11,8 @@ The file back_end_alg needs the model obtain from [hugging face](https://hugging
 4. sbert-base-chinese
 5. deberta-v3-base-qa
 
-### Fine-tuning for the SBERT
-We have fine-tuned the following three SBERT models, and the corresponding source files can be found on kaggle.
+### fine-tune
+This folder contain the our fine-tuning for the SBERT. We have fine-tuned the following three SBERT models, and the corresponding source files can be found on kaggle.
 
 1. [sbert-base-chinese](https://huggingface.co/uer/sbert-base-chinese-nli)
 2. [sn-xlm-roberta-base](https://huggingface.co/symanto/sn-xlm-roberta-base-snli-mnli-anli-xnli)
@@ -24,6 +24,16 @@ The fine-tuning kaggle file can be found by the following hyperlink:
 2. [sn-xlm-roberta-base](https://www.kaggle.com/shadowcattin/sentence-embedding-roberta-fyp)
 3. [deberta-v3-base-qa](https://www.kaggle.com/shadowcattin/sentence-embedding-deberta-fyp)
 
-### Evaluation
-We totally evaluate the performance of the QA system by using the method of TF-IDF, BERT, SBERT separatly. 
-The jupyter notebook are store in the path evaluation, which includes 8 models.
+### evaluation
+This folder mainly talk about how we evaluate the model. We totally evaluate the performance of the QA system by using the method of TF-IDF, BERT, SBERT separatly. 
+The jupyter notebook are store in the evaluation folder, which includes 8 models. The source file can be found in the kaggle by using the hyperlink below.
+
+1. (TF-IDF)[https://www.kaggle.com/code/shadowcattin/ealuation-tfidf-fyp/notebook]
+2. (BERT)[https://www.kaggle.com/code/shadowcattin/ealuation-bert-emb-fyp]
+3. (RoBERTa)[https://www.kaggle.com/code/shadowcattin/sentence-embedding-roberta-fyp]
+4. (SBERT)[https://www.kaggle.com/code/shadowcattin/ealuation-sbert-base-fyp]
+5. (SRoBERTa)[https://www.kaggle.com/code/shadowcattin/ealuation-sbert-ro-fit-fyp]
+6. (SDeBERTa)[https://www.kaggle.com/code/shadowcattin/ealuation-sbert-deber-fyp]
+4. (SBERT after fine-tune)[https://www.kaggle.com/code/shadowcattin/ealuation-sbert-finet-fyp]
+5. (SRoBERTa after fine-tune)[https://www.kaggle.com/code/shadowcattin/ealuation-sbert-ro-fit-fyp]
+6. (SDeBERTa after fine-tune)[https://www.kaggle.com/code/shadowcattin/ealuation-sbert-de-finet-fyp]
