@@ -23,15 +23,18 @@ model_SBert = SentenceTransformer(model_SBert_path)
 topk_SBert = 3
 threshold_SBert = 0.6
 question_list_SBert, answer_list_SBert = read_and_split_the_excel(data_path)
-question_embeddings_SBert = model_SBert.encode(question_list_SBert, convert_to_tensor=True)
+question_embeddings_SBert = model_SBert.encode(
+    question_list_SBert, convert_to_tensor=True)
 
-tokenizer, model, question_list, answer_list, doc_vecs = Bert_em_prepared(data_path, model_Bert_path)
+tokenizer, model, question_list, answer_list, doc_vecs = Bert_em_prepared(
+    data_path, model_Bert_path)
 topk_Bert = 5
 threshold_Bert = 0.95
 
 topk_TFIDF = 3
 threshold_TFIDF = 0.7
-question_list_tfidf, question_token_list, answer_list_tfidf, stop_words = TF_IDF_prepared(data_path, stopword_file_path)
+question_list_tfidf, question_token_list, answer_list_tfidf, stop_words = TF_IDF_prepared(
+    data_path, stopword_file_path)
 
 appid = '20220713001272202'  # 填写你的appid
 secretKey = 'v4x3PC6W6X9etHyXO5wu'  # 填写你的密钥
@@ -46,15 +49,21 @@ def query_sbert():
         if query:
             lang = langid.classify(query)[0]
             if lang in ['zh', 'en', 'de']:
-                query = translate(query, lang, 'zh', appid, secretKey)
-                result, if_valid = SBERT_get_reply(model_SBert, query, question_list_SBert, answer_list_SBert,
-                                                   question_embeddings_SBert, topk_SBert, threshold_SBert)
-                result = translate(result, 'zh', lang, appid, secretKey)
+                if lang != 'zh':
+                    query = translate(query, lang, 'zh', appid, secretKey)
+                    result, if_valid = SBERT_get_reply(model_SBert, query, question_list_SBert, answer_list_SBert,
+                                                       question_embeddings_SBert, topk_SBert, threshold_SBert)
+                    result = translate(result, 'zh', lang, appid, secretKey)
+                else:
+                    result, if_valid = SBERT_get_reply(model_SBert, query, question_list_SBert, answer_list_SBert, question_embeddings_SBert, topk_SBert, threshold_SBert)
+                    
                 if if_valid:
-                    greet = translate(greet_pre(), 'zh', lang, appid, secretKey)
+                    greet = translate(greet_pre(), 'zh',
+                                      lang, appid, secretKey)
                     return jsonify({"answer": greet + "\n" + result})
                 else:
-                    greet_none = translate(greet_none_reply(), 'zh', lang, appid, secretKey)
+                    greet_none = translate(
+                        greet_none_reply(), 'zh', lang, appid, secretKey)
                     return jsonify({"answer": greet_none})
             else:
                 return jsonify({"answer": "Sorry, this language is not supported yet!"})
@@ -71,7 +80,8 @@ def query_bert():
         query = data.get('query', None)
         if query:
             query = translate(query, 'auto', 'zh', appid, secretKey)
-            result, if_valid = Bert_em_reply(query, tokenizer, model, question_list, answer_list, doc_vecs, topk_Bert, threshold_Bert)
+            result, if_valid = Bert_em_reply(
+                query, tokenizer, model, question_list, answer_list, doc_vecs, topk_Bert, threshold_Bert)
             if if_valid:
                 return jsonify({"answer": greet_pre() + "\n" + result})
             else:
@@ -89,7 +99,8 @@ def query_tfidf():
         query = data.get('query', None)
         if query:
             query = translate(query, 'auto', 'zh', appid, secretKey)
-            result, if_valid = TF_IDF_reply(query, question_list_tfidf, question_token_list, answer_list_tfidf, stop_words, topk_TFIDF, threshold_TFIDF)
+            result, if_valid = TF_IDF_reply(
+                query, question_list_tfidf, question_token_list, answer_list_tfidf, stop_words, topk_TFIDF, threshold_TFIDF)
             if if_valid:
                 return jsonify({"answer": greet_pre() + "\n" + result})
             else:
