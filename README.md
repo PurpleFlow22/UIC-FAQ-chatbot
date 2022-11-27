@@ -3,13 +3,18 @@ A multi-language chatbot based on deep learning and natural language processing,
 
 ## File Description
 ### back_end_alg
-The file mainly cosist of the Back end algorithm, and it needs the model obtain from [hugging face](https://huggingface.co/models) which consist of:
+The file mainly cosist of the Back end algorithm, and it needs the model obtain from [hugging face](https://huggingface.co/models) which consist of: 
 
 1. bert-base-chinese
 2. roberta-chinese-base
 3. sn-xlm-roberta-base
 4. sbert-base-chinese
 5. deberta-v3-base-qa
+
+Besides, it also contains the fine-tuning model which can download by the following link:
+4. [SBERT after fine-tune](https://www.kaggle.com/code/shadowcattin/ealuation-sbert-finet-fyp/data)
+5. [SRoBERTa after fine-tune](https://www.kaggle.com/code/shadowcattin/ealuation-sbert-ro-fit-fyp/data)
+6. [SDeBERTa after fine-tune](https://www.kaggle.com/code/shadowcattin/ealuation-sbert-de-finet-fyp/data)
 
 ### fine-tune
 This folder contain the our fine-tuning for the SBERT. We have fine-tuned the following three SBERT models, and the corresponding source files can be found on kaggle.
