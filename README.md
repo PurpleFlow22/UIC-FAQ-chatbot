@@ -47,3 +47,14 @@ The jupyter notebook are store in the evaluation folder, which includes 8 models
 7. [SBERT after fine-tune](https://www.kaggle.com/code/shadowcattin/ealuation-sbert-finet-fyp)
 8. [SRoBERTa after fine-tune](https://www.kaggle.com/code/shadowcattin/ealuation-sbert-ro-fit-fyp)
 9. [SDeBERTa after fine-tune](https://www.kaggle.com/code/shadowcattin/ealuation-sbert-de-finet-fyp)
+
+### uic_chatbot_front
+The goal of this folder is to create an Express web server.
+
+if you want to use it, you can follow the instruction below
+1. Initialize npm and install Express
+2. Setup a new Express server
+    - server up the public directory
+    - Listen on port 3000
+3. Create index.html and render "Chat App" to the screen
+4. Test your work! Start the server and view the page in the browser
