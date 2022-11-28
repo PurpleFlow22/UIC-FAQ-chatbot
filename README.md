@@ -2,8 +2,8 @@
 A multi-language chatbot based on deep learning and natural language processing, the content is about the UIC admission question. The project is primarily based on a retrieval-based approach to question answering.
 
 ## File Description
-### back_end_alg
-The file mainly cosist of the Back end algorithm, and it needs the model obtain from [hugging face](https://huggingface.co/models) which consist of: 
+### uic_chatbot_back
+The file mainly cosist of the Back end of QA system, and it needs the model obtain from [hugging face](https://huggingface.co/models) which consist of: 
 
 1. bert-base-chinese
 2. roberta-chinese-base
@@ -16,6 +16,10 @@ Besides, it also contains the fine-tuning model which can download by the follow
 1. [SBERT after fine-tune](https://www.kaggle.com/code/shadowcattin/ealuation-sbert-finet-fyp/data)
 2. [SRoBERTa after fine-tune](https://www.kaggle.com/code/shadowcattin/ealuation-sbert-ro-fit-fyp/data)
 3. [SDeBERTa after fine-tune](https://www.kaggle.com/code/shadowcattin/ealuation-sbert-de-finet-fyp/data)
+
+The pure model example can be found by the following link, which is from the author [shadow-catt](https://github.com/shadow-catt).
+
+https://github.com/shadow-catt/UIC_QA_Model
 
 ### fine-tune
 This folder contain the our fine-tuning for the SBERT. We have fine-tuned the following three SBERT models, and the corresponding source files can be found on kaggle.
@@ -43,5 +47,3 @@ The jupyter notebook are store in the evaluation folder, which includes 8 models
 7. [SBERT after fine-tune](https://www.kaggle.com/code/shadowcattin/ealuation-sbert-finet-fyp)
 8. [SRoBERTa after fine-tune](https://www.kaggle.com/code/shadowcattin/ealuation-sbert-ro-fit-fyp)
 9. [SDeBERTa after fine-tune](https://www.kaggle.com/code/shadowcattin/ealuation-sbert-de-finet-fyp)
-
-The above three folder are from the author [shadow-catt](https://github.com/shadow-catt).
