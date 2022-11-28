@@ -79,7 +79,7 @@ io.on('connection', (socket) => {
                 console.log(res)
                 let answer
                 if (err) { 
-                    answer = 'Sorry, we are unable to reach the Q&A server at the moment.'
+                    answer = '抱歉，我们目前连接不上Q&A的服务器。\nSorry, we are unable to reach the Q&A server at the moment.'
                 } else if (res.body) {
                     answer = body.answer
                 } else {
