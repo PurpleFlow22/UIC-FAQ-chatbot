@@ -19,7 +19,7 @@ Besides, it also contains the fine-tuning model which can download by the follow
 
 The pure model example can be found by the following link, which is from the author [shadow-catt](https://github.com/shadow-catt).
 
-https://github.com/shadow-catt/UIC_QA_Model
+https://github.com/shadow-catt/UIC_QA_Model/tree/main/back_end_alg
 
 ### fine-tune
 This folder contain the our fine-tuning for the SBERT. We have fine-tuned the following three SBERT models, and the corresponding source files can be found on kaggle.
