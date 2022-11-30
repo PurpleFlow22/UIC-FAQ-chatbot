@@ -17,6 +17,8 @@ Besides, it also contains the fine-tuning model which can download by the follow
 2. [SRoBERTa after fine-tune](https://www.kaggle.com/code/shadowcattin/ealuation-sbert-ro-fit-fyp/data)
 3. [SDeBERTa after fine-tune](https://www.kaggle.com/code/shadowcattin/ealuation-sbert-de-finet-fyp/data)
 
+After you download the model, you can just run the main.py to run the back end. If you follow the instruction of uic_chatbot_front, you can deploy the project locally!
+
 The pure model example can be found by the following link, which is from the author [shadow-catt](https://github.com/shadow-catt).
 
 https://github.com/shadow-catt/UIC_QA_Model/tree/main/back_end_alg
