@@ -19,6 +19,8 @@ Besides, it also contains the fine-tuning model which can download by the follow
 
 After you download the model, you can just run the main.py to run the back end. If you follow the instruction of uic_chatbot_front, you can deploy the project locally!
 
+Beside, in the UIC-FAQ-chatbot/uic_chatbot_back/main.py, we apply the baidu translation api, you need to modify the appid and secret key to yours, or you can change to another translation api to use. 
+
 The pure model example can be found by the following link, which is from the author [shadow-catt](https://github.com/shadow-catt).
 
 https://github.com/shadow-catt/UIC_QA_Model/tree/main/back_end_alg
