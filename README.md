@@ -72,4 +72,4 @@ This front end mainly has two page
 
 If you want to ask the chatbot question, plase type the folling format to send in the caht room page
 
-     > ** @Bot question**
+     >  @Bot question
