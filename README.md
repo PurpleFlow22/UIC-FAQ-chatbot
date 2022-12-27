@@ -56,5 +56,5 @@ The jupyter notebook are store in the evaluation folder, which includes 8 models
 
 if you want to use it, you can follow the instruction below
 1. Initialize npm, Express
-2. run npm run dev
+2. run **npm run dev**
 3. vist localhost:3000 to sign in
