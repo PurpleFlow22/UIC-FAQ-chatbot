@@ -54,8 +54,12 @@ The jupyter notebook are store in the evaluation folder, which includes 8 models
 
 ### uic_chatbot_front
 This is a front-end which achieve
+
   > UIC question-answer system
+
   > Multi-user-real time chat room
+
+
 if you want to use it, you can follow the instruction below
 1. Initialize npm, Express, bad-words, socket.io and any other package require to install.
 2. run **npm run dev**
@@ -65,4 +69,5 @@ This front end mainly has two page
  > sign in page
  > chat room page
 If you want to ask the chatbot question, plase type the folling format to send in the caht room page
+
  > ** @Bot question**
