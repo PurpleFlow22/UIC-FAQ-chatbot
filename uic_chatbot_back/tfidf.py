@@ -2,8 +2,8 @@ import jieba
 import pandas as pd
 import numpy as np
 from gensim import corpora, models, similarities
-from termcolor import colored
-import time
+
+
 def read_and_split_the_excel(path):
     """
     :func: 根据xlsx文件获取问题list和答案list（需要更新openyxl）
@@ -104,7 +104,7 @@ def generate_question_t_list(question_list, stop_words):
 # print(question_token_list[:4])
 
 
-def similarity_cn(query, dictionary, tfidf, corpus_tfidf, topk=3, threshold=0.7, all_score_without_rank=0):
+def similarity_cn(query, dictionary, tfidf, corpus_tfidf, topk=3, threshold=0.5, all_score_without_rank=0):
     """
     :func: 计算问题与知识库中问题的相似度
     :param Corp: 分词后的问题
@@ -196,15 +196,11 @@ def TF_IDF_prepared(data_file_path, stopword_file_path):
     return question_list, question_token_list, answer_list, stop_words,dictionary, tfidf, corpus_tfidf
 
 def TF_IDF_reply(query, question_list, answer_list, stop_words, topk_TFIDF,threshold_TFIDF, dictionary, tfidf, corpus_tfidf):
-    start_time = time.time()
     # 对查询的问题进行处理
     query_processed = cn_stop_word_rm(query, stop_words)
 
     # 得到问题（答案）所对应的行索引
     if_valid, topk_idx_TF, score_TF = similarity_cn(query_processed, dictionary, tfidf, corpus_tfidf, topk_TFIDF, threshold_TFIDF, all_score_without_rank=0)
-    end_time = time.time()
-    wasting_time = end_time-start_time
-    print("Costing time for getting answer:", wasting_time)
 
     # #回答答案，可以注释
     # print('top few questions(TFIDF: %d) similar to "%s"' % (topk_TFIDF, colored(query, 'green')))

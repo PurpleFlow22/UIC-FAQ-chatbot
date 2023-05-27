@@ -70,7 +70,7 @@ io.on('connection', (socket) => {
                 io.emit('message', generateMessage(botName, '请输入内容。\nEmpty request is not allowed.'))
                 return callback()
             }
-            request('http://127.0.0.1:5000/query-sbert', {
+            request('http://127.0.0.1:5000/query-vsbert', {
                 method: 'POST',
                 json: {
                     "query": question
