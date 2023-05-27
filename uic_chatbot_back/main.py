@@ -1,3 +1,5 @@
+import openai
+from generate_openai_ada_embedding import get_gpt_response
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import json
@@ -15,6 +17,10 @@ app = Flask(__name__)
 CORS(app)
 app.config['JSON_AS_ASCII'] = False
 
+openai.api_key = "YourKeyHere"
+assert openai.api_key is not None, "Your OpenAI API key is not set!"
+gpt_model = "text-embedding-ada-002"
+
 print("数据准备中")
 data_path = "./dataset/CN_QA_dataset_all.xlsx"
 model_Bert_path = './emb_bert/bert_base_chinese'
@@ -22,6 +28,7 @@ stopword_file_path = './dataset/cn_stopwords.txt'
 model_SBert_path = 'SBert/SBert_CN_fine_tune'
 model_RoBERTa_path = 'SBert/roberta_fine_tune'
 model_DeBERTa_path = 'SBert/deberta_fine_tune'
+
 
 """ preparation for SBERT """
 topk_SBert = 3
@@ -33,7 +40,6 @@ question_list_SBert, answer_list_SBert = read_and_split_the_excel(data_path)
 question_embeddings_SBert = model_SBert.encode(question_list_SBert, convert_to_tensor=True)
 question_embeddings_RoBERTa = model_RoBERTa.encode(question_list_SBert, convert_to_tensor=True)
 question_embeddings_DeBERTa = model_DeBERTa.encode(question_list_SBert, convert_to_tensor=True)
-
 
 """ preparation for BERT_emb """
 # tokenizer_BERT, model_BERT, question_list_BERT, answer_list_BERT, doc_vecs_BERT = Bert_em_prepared(
@@ -136,12 +142,10 @@ def query_sbert():
                                                        question_embeddings_SBert, topk_SBert, threshold_SBert)
 
                 if if_valid:
-                    greet = translate(greet_pre(), 'zh',
-                                      lang, appid, secretKey)
+                    greet = translate(greet_pre(), 'zh', lang, appid, secretKey)
                     return jsonify({"answer": greet + "\n" + result})
                 else:
-                    greet_none = translate(
-                        greet_none_reply(), 'zh', lang, appid, secretKey)
+                    greet_none = translate(greet_none_reply(), 'zh', lang, appid, secretKey)
                     return jsonify({"answer": greet_none})
             else:
                 not_support_ans = translate(
@@ -163,15 +167,11 @@ def query_bert():
             if lang in ['zh', 'en', 'de']:
                 if lang != 'zh':
                     query = translate(query, 'auto', 'zh', appid, secretKey)
-                    result, if_valid = Bert_em_reply(
-                        query, tokenizer_BERT, model_BERT, question_list_BERT, answer_list_BERT, doc_vecs_BERT,
-                        topk_Bert, threshold_Bert)
+                    result, if_valid = Bert_em_reply(query, tokenizer_BERT, model_BERT, question_list_BERT, answer_list_BERT, doc_vecs_BERT, topk_Bert, threshold_Bert)
                     result = translate(result, 'zh', lang, appid, secretKey)
                 else:
-                    result, if_valid = Bert_em_reply(
-                        query, tokenizer_BERT, model_BERT, question_list_BERT, answer_list_BERT, doc_vecs_BERT,
-                        topk_Bert,
-                        threshold_Bert)
+                    result, if_valid = Bert_em_reply(query, tokenizer_BERT, model_BERT, question_list_BERT, answer_list_BERT, doc_vecs_BERT,
+                        topk_Bert, threshold_Bert)
             else:
                 not_support_ans = translate(
                     "抱歉，该语言暂时不支持哦~", 'zh', lang, appid, secretKey)
@@ -212,6 +212,32 @@ def query_tfidf():
                 return jsonify({"answer": greet_pre() + result})
             else:
                 return jsonify({"answer": greet_none_reply()})
+        else:
+            return jsonify({'status': False, 'msg': '请输入您的问题哦！'}), 400
+    except ValueError as ve:
+        return jsonify({'status': False, 'msg': '输入参格式不正确！'}), 400
+
+
+@app.route("/query-gpt", methods=['POST', 'GET'])
+def query_gpt():
+    try:
+        data = json.loads(request.data.decode(encoding='utf8'))
+        query = data.get('query', None)
+
+        if query:
+            lang = langid.classify(query)[0]
+            if lang in ['zh', 'en', 'de']:
+                if lang != 'zh':
+                    query = translate(query, 'auto', 'zh', appid, secretKey)
+                    result = get_gpt_response(query, gpt_model, 1, question_list, answer_list)[0][2]
+                    result = translate(result, 'zh', lang, appid, secretKey)
+                else:
+                    result = get_gpt_response(query, gpt_model, 1, question_list, answer_list)[0][2]
+            else:
+                not_support_ans = translate(
+                    "抱歉，该语言暂时不支持哦~", 'zh', lang, appid, secretKey)
+                return jsonify({"answer": not_support_ans})
+            return jsonify({"answer": greet_pre() + result})
         else:
             return jsonify({'status': False, 'msg': '请输入您的问题哦！'}), 400
     except ValueError as ve:
